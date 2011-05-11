@@ -95,7 +95,9 @@ function showit() {
         summary.style.fontSize = "1em";
         summary.style.top = "0px";
         summary.style.width = "100%";
-        summary.style.backgroundColor = "red";
+        summary.style.backgroundColor = "lightblue";
+        summary.style.color = "black";
+        summary.style.zIndex = "9999999999";
         document.body.appendChild(summary);
     }
     summary.innerHTML = "<ol>";
