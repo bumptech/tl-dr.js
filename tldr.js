@@ -55,7 +55,7 @@ function parseit(text) {
             if (my_words[j].length >2) {
                 if (!dictionary[my_words[j].toLowerCase()]) dictionary[my_words[j].toLowerCase()]=0;
                 var rx = new RegExp(" " + my_words[j].toLowerCase().replace(/[^a-zA-Z 0-9]+/g,'') + " ");
-                if (rx.test(stoplist)) { 
+                if (!rx.test(stoplist)) { 
                         scores[i] += dictionary[my_words[j].toLowerCase()];
                     }
                 count ++;
