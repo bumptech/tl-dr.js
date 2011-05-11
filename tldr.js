@@ -66,9 +66,8 @@ function parseit(text) {
     /*alert (sentences);*/
     var sorted_scores = new Array();
     i = 0;
-    for(sentence in scores) {
-     sorted_scores[i] = [scores[sentence], sentence];
-     i += 1;
+    for(i = 0; i < scores.length; i++) {
+     sorted_scores[i] = [scores[i], i];
     }
     sorted_scores.sort(sortit);
     alert (
