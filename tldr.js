@@ -104,7 +104,7 @@ function showit() {
     for (var i=0; i < 5; i++) {
         var thissentence = sentences[sorted_scores[i][1]];
         var thisscore = sorted_scores[i][0];
-        summary.innerHTML += "<li>"  + " (" + sorted_scores[i][1] + " " + thisscore +")" + thissentence + "</li>";
+        summary.innerHTML += "<li>"  + thissentence + "</li>";
     };
     summary.innerHTML += "</ol>";
     
