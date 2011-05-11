@@ -62,18 +62,22 @@ function parseit(text) {
         scores[i] = 0;                    
         var count = 0;
         var my_words = findwords(sentences[i]);
-        
+        var goodwords = 0;
         for (j=0; j<my_words.length; j++) {
-            if (my_words[j].length >2) {
+            if (my_words[j].length >3) {
                 if (!dictionary[my_words[j].toLowerCase()]) dictionary[my_words[j].toLowerCase()]=0;
                 var rx = new RegExp(" " + my_words[j].toLowerCase().replace(/[^a-zA-Z 0-9]+/g,'') + " ");
                 if (!rx.test(stoplist)) { 
                         scores[i] += dictionary[my_words[j].toLowerCase()];
+                        goodwords++;
                     }
                 count ++;
             }
         }
         scores[i]/=count;
+        if (goodwords < 2) {
+            scores[i] = 0;
+        };
     }
     /*alert (sentences);*/
     sorted_scores = new Array();
