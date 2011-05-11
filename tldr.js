@@ -18,6 +18,7 @@ function initsumm () {
     d=window.getSelection()+'';
     if (d) parseit (d);
     else parseit(thetext);
+    showit();
 }
 
 function parseps (n) {
@@ -33,9 +34,10 @@ function parseps (n) {
     }
     return text;
 }
-
+var sentences;
+var sorted_scores;
 function parseit(text) {
-    var sentences = findsentences(text);
+    sentences = findsentences(text);
     var dictionary = new Array();
     for (i=0; i<sentences.length; i++) {
         var my_words = findwords(sentences[i]);
@@ -64,18 +66,32 @@ function parseit(text) {
         scores[i]/=count;
     }
     /*alert (sentences);*/
-    var sorted_scores = new Array();
+    sorted_scores = new Array();
     i = 0;
     for(i = 0; i < scores.length; i++) {
      sorted_scores[i] = [scores[i], i];
     }
     sorted_scores.sort(sortit);
-    alert (
-	     sentences[sorted_scores[0][1]] + "(" + sorted_scores[0][1] + ", " + sorted_scores[0][0] + ")... "
-      + sentences[sorted_scores[1][1]] + "(" + sorted_scores[1][1] + ", " + sorted_scores[1][0] + ")... "
-      + sentences[sorted_scores[2][1]] + "(" + sorted_scores[2][1] + ", " + sorted_scores[2][0] + ")... "
-      + sentences[sorted_scores[3][1]] + "(" + sorted_scores[3][1] + ", " + sorted_scores[3][0] + ")... "
-      + sentences[sorted_scores[4][1]] + "(" + sorted_scores[4][1] + ", " + sorted_scores[4][0] + ")... ");
+}
+function showit() {
+    var summary;
+    if (!summary) {
+        summary = document.createElement('div');
+        summary.style.position = "fixed";
+        summary.style.fontSize = "1em";
+        summary.style.top = "0px";
+        summary.style.width = "100%";
+        summary.style.backgroundColor = "red";
+        document.body.appendChild(summary);
+    }
+    summary.innerHTML = "<ol>";
+    for (var i=0; i < 5; i++) {
+        var thissentence = sentences[sorted_scores[i][1]];
+        var thisscore = sorted_scores[i][0];
+        summary.innerHTML += "<li>"  + " (" + sorted_scores[i][1] + " " + thisscore +")" + thissentence + "</li>";
+    };
+    summary.innerHTML += "</ol>";
+    
 }
 
 function findsentences (text) {
