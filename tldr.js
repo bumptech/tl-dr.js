@@ -79,7 +79,9 @@ function parseit(text) {
 }
 
 function findsentences (text) {
-    var t = text.replace(/\.(.)\./g,"$1");
+    
+    var t = text.replace(/\b(..)\./g, " $1");
+    t = t.replace(/\.(.)\./g,"$1");
     var sentences = t.split(/\./);
     return sentences;
 }
