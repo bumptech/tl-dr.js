@@ -6,6 +6,16 @@ void (initsumm());
 function initsumm () {
     initStopList();
     var paragraphs = document.getElementsByTagName('p');
+    var rootContent;
+    if (!rootContent) rootContent = document.getElementById('post'); /*blogs*/
+    if (!rootContent) rootContent = document.getElementById('content'); /*wikipedia*/
+    if (!rootContent) rootContent = document.getElementById('article'); /*NYTimes*/
+    if (!rootContent) rootContent = document.getElementById('articles');
+    if (!rootContent) rootContent = document.getElementById('cnnContentContainer'); /*wikipedia*/
+    if (!rootContent) rootContent = document.getElementById('main'); /*wikipedia*/
+    if (!rootContent) rootContent = document.getElementById('page'); /*wikipedia*/
+    if (!rootContent) rootContent = document; /*everythingelse*/    
+    paragraphs = rootContent.getElementsByTagName('p');;
      thetext = '';
      var count = 0;
     for (var i = 0; i< paragraphs.length; i++) {
