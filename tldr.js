@@ -2,7 +2,6 @@ javascript:
 /* tldr.js copyright Seth Raphael 2011 */
 void (initsumm());
 
-
 function initsumm () {
     initStopList();
     var paragraphs = document.getElementsByTagName('p');
@@ -14,11 +13,11 @@ function initsumm () {
     if (!rootContent) rootContent = document.getElementById('cnnContentContainer'); /*wikipedia*/
     if (!rootContent) rootContent = document.getElementById('main'); /*wikipedia*/
     if (!rootContent) rootContent = document.getElementById('page'); /*wikipedia*/
-    if (!rootContent) rootContent = document; /*everythingelse*/    
-    paragraphs = rootContent.getElementsByTagName('p');;
-     thetext = '';
-     var count = 0;
-    for (var i = 0; i< paragraphs.length; i++) {
+    if (!rootContent) rootContent = document.body; /*everythingelse*/    
+    paragraphs = rootContent.getElementsByTagName('p');
+    thetext = '';
+    var count = 0;
+    for (var i = 0; i < paragraphs.length; i++) {
         newtext = parseps(paragraphs[i]);
         if (newtext.indexOf(". ") !=-1 || newtext.indexOf(".") == newtext.length){
             thetext += newtext +". ";
